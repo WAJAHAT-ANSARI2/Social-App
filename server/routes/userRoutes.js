@@ -12,6 +12,6 @@ userRouter.post('/follow', protect, followUser)
 userRouter.post('/unfollow', protect, unfollowUser)
 userRouter.post('/connect', protect, sendConnectionRequest)
 userRouter.post('/accept', protect, acceptConnectionRequests)
-userRouter.get('connections', protect, getUserConnection)
+userRouter.get('/connections', protect, getUserConnection)
 
 export default userRouter

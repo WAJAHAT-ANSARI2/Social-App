@@ -1,7 +1,8 @@
 import { Inngest } from "inngest";
 import User from "../Models/User.js";
-import { Connection } from "mongoose";
 import sendEmail from "../configs/nodeMailer.js";
+import mongoose from "mongoose";
+import Connection from "../Models/Connection.js";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "pingup-app" });
@@ -63,7 +64,7 @@ const sendNewConnectionRequestReminder = inngest.createFunction(
         const {connectionId} = event.data;
 
         await step.run('send-cennection-request-mail', async () => {
-            const connection = await Connection.findById(connectionId).populate('from_user_id to_user_id');
+            const connection = await Conn.findById(connectionId).populate('from_user_id to_user_id');
             const subject = `New Connection Request`;
             const body = `<div style="font-family: Arial, sans-serif; padding: 20px;">
             <h2>Hi ${connection.to_user_id.full_name},</h2>
